@@ -2,7 +2,7 @@ var mainSection = document.querySelector("main")
 var startQuizButton = document.querySelector("#start-quiz-btn")
 var timeSpan = document.querySelector("#time-span");
 var timeLeft = 100;
-var questionIndex = 0;
+var questionIndex;
 var questions = [];
 var points = 0;
 var countdown;
@@ -24,7 +24,7 @@ var question2 = new Question(1,"Who is the president?","Joe Biden",["Donald Trum
 
 
 function startQuiz(){
-    console.log("started quiz!")
+    questionIndex = 0;
     startTimer()
     mainSection.innerHTML = "";
     var question = document.createElement("h2");
@@ -41,6 +41,7 @@ function startQuiz(){
 }
 
 function startTimer(){
+    timeLeft = 100;
     countdown = setInterval(function(){
         if(timeLeft===0){
             clearInterval(countdown)
@@ -78,9 +79,7 @@ function endQuiz(){
                 initials:initials,
                 score:points,
             }
-            var highScores = JSON.parse(localStorage.getItem("highScores"));
-            highScores.push(newScore);
-            localStorage.setItem("highScores",JSON.stringify(highScores));
+// Need to store in local storage
             promptPlayAgain();
         }
     })
@@ -146,5 +145,12 @@ function answerCorrect(){
 }
 
 function promptPlayAgain(){
-    console.log("Play Again?")
+    mainSection.innerHTML = ""
+    var el = document.createElement("button");
+    mainSection.append(el)
+    el.textContent = "Play Again?";
+    el.addEventListener("click",()=>{
+        startQuiz();
+    })
+
 }
