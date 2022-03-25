@@ -100,8 +100,10 @@ function endQuiz(){
 
 }
 
+// Takes a question object
 function setQuestionValues(question){
-    if (question === undefined){
+    // this happens when the index used in the invoking is outside the questions array. 
+    if (!question){
         endQuiz()
         return;
     }
@@ -113,6 +115,8 @@ function setQuestionValues(question){
         button.className = "option";
     }
 }
+
+// Does not randomize all the answers, but rather inserts the correct answer in a random position in a copy of the other answers array.
 
 function randomizeAnswers(correctAnswer,otherAnswers){
     var options = [...otherAnswers];
@@ -162,6 +166,7 @@ function promptPlayAgain(){
     var el = document.createElement("button");
     mainSection.append(el)
     el.textContent = "Play Again?";
+    el.id = "play-again-btn";
     el.addEventListener("click",()=>{
         startQuiz();
     })
