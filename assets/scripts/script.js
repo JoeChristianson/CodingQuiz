@@ -1,15 +1,16 @@
+var body = document.querySelector("body")
 var mainSection = document.querySelector("main")
 var startQuizButton = document.querySelector("#start-quiz-btn")
 var timeSpan = document.querySelector("#time-span");
-var timeLeft = 100;
+var timeLeft = 75;
 var questionIndex;
 var questions = [];
 var points = 0;
 var countdown;
 
 class Question{
-    constructor(index,question,correctAnswer,otherAnswers){
-        this.index = index;
+    constructor(question,correctAnswer,otherAnswers){
+        this.index = questions.length;
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.otherAnswers = otherAnswers;
@@ -19,8 +20,17 @@ class Question{
     }
 }
 
-var question1 = new Question(0,"Which is not a semantic element?","<div>",["<header>","<article>","<figure>"])
-var question2 = new Question(1,"Who is the president?","Joe Biden",["Donald Trump","Barack Obama","George Bush"])
+new Question("Which is not a semantic element?","<div>",["<header>","<article>","<figure>"])
+new Question("Which element in an html document includes the javascript?","<script>",["<javascript>","<java>","<link>"])
+new Question("The method 'querySelectorAll' returns what type of value when invoked?","Array",["Number","Object","HTML Element"])
+new Question("What is localStorage a property of in the DOM?","window",["document","system","it is not a property"])
+new Question("Which is not a type of pop-up box?","input",["alert","confirm","prompt"])
+new Question("Which kind of loop can iterate through the properties of an object?","for...in",["for...of","for...each","forEach"])
+new Question("What tests for loose equality?","==",["===","~=","=~"]);
+new Question("How many arguments does Math.random() require?",0,[2,1,"random is not a method of the Math Object"])
+new Question("Which is not a pseudo element?","None of the options are.",["hover","touch","within"])
+new Question("What is the value of 19%9?",1,[2,10,"NaN"])
+
 
 
 function startQuiz(){
@@ -35,8 +45,7 @@ function startQuiz(){
         mainSection.append(answer);
     }
     var footer = document.createElement("footer");
-    mainSection.append(footer)
-    footer.textContent = "Here is where the footer info goes!"
+    body.append(footer)
     setQuestionValues(questions[0]);
 }
 
@@ -79,7 +88,11 @@ function endQuiz(){
                 initials:initials,
                 score:points,
             }
-// Need to store in local storage
+        var highScores = JSON.parse(localStorage.getItem("highScores"));
+        highScores.push(newScore)
+        console.log(highScores)
+        localStorage.setItem("highScores",JSON.stringify(highScores));
+
             promptPlayAgain();
         }
     })
@@ -129,15 +142,15 @@ mainSection.addEventListener("click",function(event){
 })
 
 function answerWrong(){
-    document.querySelector("footer").textContent = "WRONG!";
-    setTimeout(()=>{
+    document.querySelector("footer").innerHTML = "<hr><p>Incorrect</p>";
+        setTimeout(()=>{
         document.querySelector("footer").textContent = "";
     },3000)
     timeLeft -=10;
 }
 
 function answerCorrect(){
-    document.querySelector("footer").textContent = "CORRECT!";
+    document.querySelector("footer").innerHTML = "<hr><p>Correct</p>";
     setTimeout(()=>{
         document.querySelector("footer").textContent = "";
     },3000)

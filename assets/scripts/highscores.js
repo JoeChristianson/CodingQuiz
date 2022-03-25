@@ -1,22 +1,48 @@
 var dummyHighScores = [{
-    initials:"BOB",
-    score: 30,
-},
-{
-    initials:"JJA",
-    score: 26,
-},
-{
-    initials:"POB",
-    score: 50,
-},
-{
     initials:"AAA",
-    score: 23,
+    score: 0,
+},
+{
+    initials:"BBB",
+    score: 0,
+},
+{
+    initials:"CCC",
+    score: 0,
+},
+{
+    initials:"DDD",
+    score: 0,
+},
+{
+    initials:"EEE",
+    score: 0,
+},
+{
+    initials:"FFF",
+    score: 0,
+},
+{
+    initials:"GGG",
+    score: 0,
+},
+{
+    initials:"HHH",
+    score: 0,
+},
+{
+    initials:"III",
+    score: 0,
+},
+{
+    initials:"JJJ",
+    score: 0,
 },
 ]
 
-localStorage.setItem("highScores",JSON.stringify(dummyHighScores));
+if(!localStorage.getItem("highScores")){
+    localStorage.setItem("highScores",JSON.stringify(dummyHighScores));
+}
 
 // this sets the highScores variable to a parsed array sorted according to score of each object
 var highScores = JSON.parse(localStorage.getItem("highScores")).sort((a,b)=>{
