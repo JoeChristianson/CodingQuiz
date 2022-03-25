@@ -34,6 +34,7 @@ new Question("What is the value of 19%9?",1,[2,10,"NaN"])
 
 
 function startQuiz(){
+    points = 0;
     questionIndex = 0;
     startTimer()
     mainSection.innerHTML = "";
@@ -89,6 +90,7 @@ function endQuiz(){
                 score:points,
             }
         var highScores = JSON.parse(localStorage.getItem("highScores"));
+        if (!highScores) highScores = [];
         highScores.push(newScore)
         console.log(highScores)
         localStorage.setItem("highScores",JSON.stringify(highScores));
@@ -146,7 +148,7 @@ mainSection.addEventListener("click",function(event){
 })
 
 function answerWrong(){
-    document.querySelector("footer").innerHTML = "<hr><p>Incorrect</p>";
+    document.querySelector("footer").innerHTML = "<hr><p>Incorrect!</p>";
         setTimeout(()=>{
         document.querySelector("footer").textContent = "";
     },3000)
@@ -154,7 +156,7 @@ function answerWrong(){
 }
 
 function answerCorrect(){
-    document.querySelector("footer").innerHTML = "<hr><p>Correct</p>";
+    document.querySelector("footer").innerHTML = "<hr><p>Correct!</p>";
     setTimeout(()=>{
         document.querySelector("footer").textContent = "";
     },3000)

@@ -1,3 +1,5 @@
+// Need to Add Clear High Scores Button
+
 var dummyHighScores = [{
     initials:"AAA",
     score: 0,
@@ -52,6 +54,6 @@ var highScores = JSON.parse(localStorage.getItem("highScores")).sort((a,b)=>{
 // this appends scores descending from highest with a max of ten scores appended.
 for (let i=0;i<highScores.length && i<10;i++){
     var scoreRow = document.createElement("li");
-    scoreRow.textContent = highScores[i].initials + ": " + highScores[i].score;
+    scoreRow.innerHTML = `<span>${highScores[i].initials}</span><span>${highScores[i].score}</span>`
     document.querySelector("#high-scores-list").append(scoreRow);
 }

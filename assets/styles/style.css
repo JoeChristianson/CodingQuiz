@@ -24,6 +24,10 @@ h3{
     margin: .5em 0;
 }
 
+hr{
+    width: 400px;
+}
+
 a{
     text-decoration: none;
 }
@@ -82,4 +86,33 @@ input{
 #play-again-btn{
     color:blue;
     font-size: 3rem;
+}
+
+footer{
+    text-align: center;
+}
+
+footer>p{
+    font-size: 2rem;
+    font-style: italic;
+}
+
+#high-scores-list>li{
+    display: flex;
+    padding: .3em;
+    justify-content: space-around;
+    font-size: 1.7rem;
+    width: 200px;
+}
+
+
+#high-scores-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#high-scores-container button{
+    margin: 1em;
+    padding: 1em;
 }
