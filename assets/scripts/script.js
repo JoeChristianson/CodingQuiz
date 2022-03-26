@@ -2,12 +2,11 @@ var body = document.querySelector("body")
 var mainSection = document.querySelector("main")
 var startQuizButton = document.querySelector("#start-quiz-btn")
 var timeSpan = document.querySelector("#time-span");
-var timeLeft = 75;
+var timeLeft;
 var questionIndex;
 var questions = [];
 var points = 0;
 var countdown;
-
 class Question{
     constructor(question,correctAnswer,otherAnswers){
         this.index = questions.length;
@@ -19,7 +18,6 @@ class Question{
         questions.push(this)
     }
 }
-
 new Question("Which is not a semantic element?","<div>",["<header>","<article>","<figure>"])
 new Question("Which element in an html document includes the javascript?","<script>",["<javascript>","<java>","<link>"])
 new Question("The method 'querySelectorAll' returns what type of value when invoked?","Array",["Number","Object","HTML Element"])
@@ -30,9 +28,6 @@ new Question("What tests for loose equality?","==",["===","~=","=~"]);
 new Question("How many arguments does Math.random() require?",0,[2,1,"random is not a method of the Math Object"])
 new Question("Which is not a pseudo element?","None of the options are.",["hover","touch","within"])
 new Question("What is the value of 19%9?",1,[2,10,"NaN"])
-
-
-
 function startQuiz(){
     points = 0;
     questionIndex = 0;
@@ -49,12 +44,12 @@ function startQuiz(){
     body.append(footer)
     setQuestionValues(questions[0]);
 }
-
 function startTimer(){
-    timeLeft = 100;
+    timeLeft = 75;
     countdown = setInterval(function(){
-        if(timeLeft===0){
+        if(timeLeft<=0){
             clearInterval(countdown)
+            timeSpan.textContent = "OUT OF TIME"
             endQuiz()
         }
         else {
@@ -63,7 +58,6 @@ function startTimer(){
         }
     },1000)
 }
-
 function endQuiz(){
     clearInterval(countdown);
     mainSection.innerHTML = "";
@@ -81,7 +75,6 @@ function endQuiz(){
     submit.addEventListener("click",()=>{
         var initials = input.value;
         if (initials.length !== 3){
-            console.log("invalid entry")
             return
         }
         else{
@@ -92,24 +85,17 @@ function endQuiz(){
         var highScores = JSON.parse(localStorage.getItem("highScores"));
         if (!highScores) highScores = [];
         highScores.push(newScore)
-        console.log(highScores)
         localStorage.setItem("highScores",JSON.stringify(highScores));
 
             promptPlayAgain();
         }
     })
-    
-
 }
-
-// Takes a question object
 function setQuestionValues(question){
-    // this happens when the index used in the invoking is outside the questions array. 
     if (!question){
         endQuiz()
         return;
     }
-
     document.querySelector("h2").textContent = question.question;
     for(var i = 0;i<question.options.length;i++){
         var button = document.querySelector(`[data-option="${i}"`);
@@ -117,36 +103,26 @@ function setQuestionValues(question){
         button.className = "option";
     }
 }
-
-// Does not randomize all the answers, but rather inserts the correct answer in a random position in a copy of the other answers array.
-
 function randomizeAnswers(correctAnswer,otherAnswers){
     var options = [...otherAnswers];
     options.splice(Math.floor(Math.random()*4),0,correctAnswer);
     return options;    
 }
-
 startQuizButton.addEventListener("click",startQuiz)
-
 mainSection.addEventListener("click",function(event){
     var el = event.target;
     if (!el.matches(".option")){
-        console.log("Not a button");
         return;
     }
-    // Not strict equality as option is a string
     else if (el.dataset.option == questions[questionIndex].correctIndex){
-        console.log("Correct");
         answerCorrect()
     }
     else if (el.dataset.option != questions[questionIndex].correctIndex){
-        console.log("Incorrect");
         answerWrong();
     }
     questionIndex++;
     setQuestionValues(questions[questionIndex]);
 })
-
 function answerWrong(){
     document.querySelector("footer").innerHTML = "<hr><p>Incorrect!</p>";
         setTimeout(()=>{
@@ -154,7 +130,6 @@ function answerWrong(){
     },3000)
     timeLeft -=10;
 }
-
 function answerCorrect(){
     document.querySelector("footer").innerHTML = "<hr><p>Correct!</p>";
     setTimeout(()=>{
@@ -162,7 +137,6 @@ function answerCorrect(){
     },3000)
     points++;
 }
-
 function promptPlayAgain(){
     mainSection.innerHTML = ""
     var el = document.createElement("button");
@@ -172,5 +146,5 @@ function promptPlayAgain(){
     el.addEventListener("click",()=>{
         startQuiz();
     })
-
+    timeSpan.textContent = 75;
 }
