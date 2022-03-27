@@ -70,9 +70,13 @@ main>button{
     height: 2.5em;
 }
 
+#high-scores-main{
+    justify-content: flex-start;
+}
+
 main>button:hover{
     /* border: 2px solid var(--hover-outline-color); */
-    background-color: rgb(206, 188, 164);
+    background-color: rgb(235, 227, 217);
 }
 
 input{
@@ -83,6 +87,12 @@ input{
     width: 12rem;
     text-align: center;
     margin: 1em;
+    letter-spacing: 20px;
+    text-align: center;
+}
+
+input:focus-visible{
+    outline: none;
 }
 
 #play-again-btn{
@@ -113,9 +123,35 @@ footer>p{
     align-items: center;
 }
 
+#high-scores-container>h2{
+    text-decoration: underline;
+    padding: 20px;
+}
+
 #high-scores-container button{
     margin: 1em;
     padding: 1em;
+    font-size: 1.5rem;
+    border: none;
+    background-color: black;
+    color: #f6eeed;
+}
+
+#start-quiz-btn{
+    animation: flux 1s linear infinite;
+    height: 100px;
+}
+
+@keyframes flux {
+    from{
+        font-size: 1.9rem;
+    }
+    50%{
+        font-size: 2rem;
+    }
+    to{
+        font-size: 1.9rem;
+    }
 }
 
 @media screen and (max-width: 820px ) {

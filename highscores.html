@@ -1,11 +1,10 @@
-<!-- Need to Add Clear High Scores Button -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Uses the same stylesheet as the index -->
     <link rel="stylesheet" href="./assets/styles/reset.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <title>High Scores</title>
@@ -14,11 +13,12 @@
     <header>
         <a href="index.html">Back to the Game</a>
     </header>
-    <main>
+    <main id="high-scores-main">
         <section id="high-scores-container">
             <h2>High Scores</h2>
             <ul id="high-scores-list"></ul>
-            <button id="clear-scores-btn">Clear All Scores</button>
+            <!-- Will fill in up to ten scores from local storage -->
+            <button id="clear-scores-btn">CLEAR ALL SCORES</button>
         </section>
     </main>
     <script src="./assets/scripts/highscores.js"></script>
