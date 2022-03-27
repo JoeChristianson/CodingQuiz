@@ -87,6 +87,7 @@ input{
     width: 12rem;
     text-align: center;
     margin: 1em;
+    /* separate the letter like an arcade machine */
     letter-spacing: 20px;
     text-align: center;
 }
@@ -137,27 +138,34 @@ footer>p{
     color: #f6eeed;
 }
 
+/* need a set height or siblings positions will fluxuate with the animation */
 #start-quiz-btn{
     animation: flux 1s linear infinite;
     height: 100px;
 }
 
+/* animate start button's text */
 @keyframes flux {
     from{
-        font-size: 1.9rem;
+        font-size: 1.8rem;
+        color: rgb(80, 80, 80);
     }
     50%{
         font-size: 2rem;
+        color: black;
     }
     to{
-        font-size: 1.9rem;
+        font-size: 1.8rem;
+        color: rgb(80, 80, 80);
     }
 }
 
+/* pads */
 @media screen and (max-width: 820px ) {
     h2{
         font-size: 2rem;
     }
+    /* can't hover so need static colors on buttons */
     main>button{
         margin:5px;
         background-color:rgb(226, 215, 200) ;
@@ -167,12 +175,14 @@ footer>p{
     }
 }
 
+/* phones */
 @media screen and (max-width:375px) {
     h2{
         font-size: 1.8rem;
     }
     main>button{
         font-size: 1.4rem;
+        /* prevent overflow */
         height: fit-content;
     }
 }

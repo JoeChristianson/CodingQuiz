@@ -1,4 +1,3 @@
-// Need to Add Clear High Scores Button
 var clearScoresBtn = document.querySelector("#clear-scores-btn")
 var list = document.querySelector("#high-scores-list");
 
@@ -20,6 +19,7 @@ function renderScores(){
     }
 }
 
+// clears scores from js,local storage and unrenders them
 clearScoresBtn.addEventListener("click",()=>{
     localStorage.removeItem("highScores");
     list.innerHTML = ""
