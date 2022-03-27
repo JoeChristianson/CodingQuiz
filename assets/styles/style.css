@@ -122,6 +122,13 @@ footer>p{
     h2{
         font-size: 2rem;
     }
+    main>button{
+        margin:5px;
+        background-color:rgb(226, 215, 200) ;
+    }
+    main>button:hover{
+        background-color:rgb(226, 215, 200) ;
+    }
 }
 
 @media screen and (max-width:375px) {

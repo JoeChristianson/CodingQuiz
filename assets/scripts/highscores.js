@@ -1,47 +1,6 @@
 // Need to Add Clear High Scores Button
 var clearScoresBtn = document.querySelector("#clear-scores-btn")
 var list = document.querySelector("#high-scores-list");
-// var dummyHighScores = [{
-//     initials:"AAA",
-//     score: 0,
-// },
-// {
-//     initials:"BBB",
-//     score: 0,
-// },
-// {
-//     initials:"CCC",
-//     score: 0,
-// },
-// {
-//     initials:"DDD",
-//     score: 0,
-// },
-// {
-//     initials:"EEE",
-//     score: 0,
-// },
-// {
-//     initials:"FFF",
-//     score: 0,
-// },
-// {
-//     initials:"GGG",
-//     score: 0,
-// },
-// {
-//     initials:"HHH",
-//     score: 0,
-// },
-// {
-//     initials:"III",
-//     score: 0,
-// },
-// {
-//     initials:"JJJ",
-//     score: 0,
-// },
-// ]
 
 if(!localStorage.getItem("highScores")){
     localStorage.setItem("highScores",JSON.stringify([]));
@@ -56,7 +15,7 @@ renderScores()
 function renderScores(){
     for (let i=0;i<highScores.length && i<10;i++){
         var scoreRow = document.createElement("li");
-        scoreRow.innerHTML = `<span>${highScores[i].initials}</span><span>${highScores[i].score}</span>`
+        scoreRow.innerHTML = `<span>${highScores[i].initials.toUpperCase()}</span><span>${highScores[i].score}</span>`
         list.append(scoreRow);
     }
 }

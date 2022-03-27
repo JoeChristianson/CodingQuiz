@@ -45,7 +45,7 @@ function startQuiz(){
     setQuestionValues(questions[0]);
 }
 function startTimer(){
-    timeLeft = 75;
+    timeLeft = 1000;
     countdown = setInterval(function(){
         if(timeLeft<=0){
             clearInterval(countdown)
