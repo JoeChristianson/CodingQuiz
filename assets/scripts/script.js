@@ -99,10 +99,10 @@ function endQuiz(){
                 score:points,
             }
             // gets high scores from storage, adds new score, resets storage
-        var highScores = JSON.parse(localStorage.getItem("highScores"));
+        var highScores = JSON.parse(localStorage.getItem("highScoresJIC55407"));
         if (!highScores) highScores = [];
         highScores.push(newScore)
-        localStorage.setItem("highScores",JSON.stringify(highScores));
+        localStorage.setItem("highScoresJIC55407",JSON.stringify(highScores));
         // shows play again button
         promptPlayAgain();
         }

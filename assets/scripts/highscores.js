@@ -1,12 +1,12 @@
 var clearScoresBtn = document.querySelector("#clear-scores-btn")
 var list = document.querySelector("#high-scores-list");
 
-if(!localStorage.getItem("highScores")){
-    localStorage.setItem("highScores",JSON.stringify([]));
+if(!localStorage.getItem("highScoresJIC55407")){
+    localStorage.setItem("highScoresJIC55407",JSON.stringify([]));
 }
 
 // this sets the highScores variable to a parsed array sorted according to score of each object
-var highScores = JSON.parse(localStorage.getItem("highScores")).sort((a,b)=>{
+var highScores = JSON.parse(localStorage.getItem("highScoresJIC55407")).sort((a,b)=>{
     return b.score - a.score
 })
 renderScores()
@@ -21,7 +21,7 @@ function renderScores(){
 
 // clears scores from js,local storage and unrenders them
 clearScoresBtn.addEventListener("click",()=>{
-    localStorage.removeItem("highScores");
+    localStorage.removeItem("highScoresJIC55407");
     list.innerHTML = ""
     highScores=[];
     renderScores();
