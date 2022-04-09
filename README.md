@@ -26,3 +26,7 @@ This web app is a ten question quiz to test for proficiency in front-end web dev
 ## Live Site
 
 https://joechristianson.github.io/CodingQuiz/
+
+## License
+
+![](https://img.shields.io/badge/License-MIT-yellowgreen)
